@@ -1,19 +1,20 @@
 import React from 'react';
+import data from './data';
 
-const Card = props => {
-    console.log("props", props)
+class Card extends React.Component {
+    
+   
+
+    render(){
     return (
        <div>
-           
+        
+ {/* <img src={this.props.data.avatar_url} />
+           <p>{this.props.data.login}</p>  */}
+          
        </div>
-    )
+    )}
 }
 
 export default Card;
 
-
-
-// <div>
-// <p>{props.users}</p>
-// <p>{props.followers}</p>
-// </div>

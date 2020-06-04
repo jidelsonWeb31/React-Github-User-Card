@@ -1,65 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
+// import axios from 'axios';
 
-import Card from './components/Card';
+// import Card from './components/Card';
 
-const url = 'https://api.github.com/jidelson/'
-const followers = 'https://api.github.com/jidelson/followers'
+// const url = 'https://api.github.com/users/jidelson/repos'
+// const followers = 'https://api.github.com/users/jidelson/repos/followers'
 
 class App extends React.Component {
-  constructor(){
-    super();
-    console.log("constructor running...");
-    this.state = {
-      users: [],
-      followers: []
-    };
-  }
+state= {
+  users: [],
+  followers: []
+}
 
-  componentDidMount() {
-    console.log("cDM is fetching data");
-    
-     {
-      axios.get(url)
-      .then(res => {
-        this.setState({
-          ...this.state,
-          users: res
-        })
-        .catch (err => {
-          console.log(err)
-        })
-      })
-    }
+async componentDidMount(){
+  const url ='https://api.github.com/users/jidelson';
+  const response = await fetch(url);
+  const data = await response.json();
+  this.setState({
+    ...this.state,
+    users:data
+  })
+  console.log(data.name);
+}
 
-    {
-      axios.get(followers)
-      .then(res => {
-        this.setState({
-          ...this.state,
-          followers: res
-        })
-        .catch (err => {
-          console.log(err)
-        })
-      })
-    }
-
-
-  }
-
-
-
-  render () {
-    return(
+render(){
+  return(
+    <div>
       <div>
-        <Card />
-        <p>test</p>
+        {this.state.users.name}
       </div>
-    )
-  }
+      <p>test</p>
+    </div>
+  )
+}
 };
 
 export default App;
