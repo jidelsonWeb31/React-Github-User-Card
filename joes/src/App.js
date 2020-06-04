@@ -1,36 +1,69 @@
 import React from 'react';
 import './App.css';
-// import axios from 'axios';
 
-// import Card from './components/Card';
 
-// const url = 'https://api.github.com/users/jidelson/repos'
-// const followers = 'https://api.github.com/users/jidelson/repos/followers'
+import Card from './components/Card';
+import axios from 'axios';
+
+const url = 'https://api.github.com/users/jidelson'
+const followers = 'https://api.github.com/users/jidelson/followers'
 
 class App extends React.Component {
-state= {
+
+
+constructor(){
+  super();
+this.state = {
   users: [],
   followers: []
 }
+}
 
-async componentDidMount(){
-  const url ='https://api.github.com/users/jidelson';
-  const response = await fetch(url);
-  const data = await response.json();
-  this.setState({
-    ...this.state,
-    users:data
+componentDidMount(){
+  console.log("cDM is fetching data...")
+
+
+  axios.get(url)
+  .then(res => {
+    console.log(res);
+    this.setState({
+     
+      users:res.data
+    })
+   
   })
-  console.log(data.name);
+  .catch (err => {
+    console.log(err)
+  })
+
+
+
+  axios.get(followers)
+  .then(res => {
+    console.log(res);
+    this.setState({
+     
+      followers:res.data
+    })
+   
+  })
+  .catch (err => {
+    console.log(err)
+  })
+
 }
 
 render(){
+  
   return(
     <div>
       <div>
-        {this.state.users.name}
+      
+      <Card 
+      userProps={this.state.users}
+      />
       </div>
-      <p>test</p>
+     
     </div>
   )
 }

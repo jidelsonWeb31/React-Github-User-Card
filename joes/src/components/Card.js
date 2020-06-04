@@ -1,17 +1,19 @@
 import React from 'react';
-import data from './data';
+// import data from './data';
 
 class Card extends React.Component {
     
+ 
    
-
     render(){
+      
     return (
        <div>
-        
- {/* <img src={this.props.data.avatar_url} />
-           <p>{this.props.data.login}</p>  */}
-          
+           <img src={this.props.userProps.avatar_url} />
+
+           <div>
+           Name: {this.props.userProps.name}
+           </div>
        </div>
     )}
 }
