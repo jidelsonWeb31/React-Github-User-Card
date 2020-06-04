@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-
-
-import Card from './components/Card';
+import MyCard from './components/Card';
 import axios from 'axios';
 
 const url = 'https://api.github.com/users/jidelson'
@@ -59,7 +57,7 @@ render(){
     <div>
       <div>
       
-      <Card 
+      <MyCard 
       userProps={this.state.users}
       />
       </div>
